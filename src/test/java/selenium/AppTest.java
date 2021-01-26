@@ -13,15 +13,14 @@ import org.junit.Before;
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-{
-    
+public class AppTest {
+
     private WebDriver driver;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         System.out.println("Iniciando configuración...");
-        System.setProperty("webdriver.chrome.driver","drivers/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
         driver = new ChromeDriver();
         driver.get("https://www.amazon.com");
         driver.manage().window().maximize();
@@ -31,12 +30,11 @@ public class AppTest
     }
 
     @Test
-    public void shouldAnswerWithTrue()
-    {
+    public void shouldAnswerWithTrue() {
         System.out.println("Iniciando Pruebas...");
         WebElement searchbox = driver.findElement(By.name("q"));
         searchbox.sendKeys("HandBook Devops");
         searchbox.submit();
-        assertEquals("HandBook Devops", driver.getTitle());
+        assertEquals("HandBook Devops", driver.getTitle().split("-", 0)[0].trim());
     }
 }
