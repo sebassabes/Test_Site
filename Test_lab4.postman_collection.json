@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "5a732d48-a915-4a19-bcc8-3499626df424",
+		"name": "Test_lab4",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Test_lab4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header is present\", () => {\r",
+							"  pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 180ms\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.above(180);\r",
+							"}); \r",
+							"\r",
+							"pm.test(\"Response time is less than 1000ms\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Diez x Ciento NoOk\", () => {\r",
+							"const responseJson = pm.response.json();\r",
+							"  pm.expect(responseJson.dxc).to.greaterThan(1000000); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Diez x Ciento OK\", () => {\r",
+							"const responseJson = pm.response.json();\r",
+							"  pm.expect(responseJson.dxc).to.eql(4371450); \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Cookie JSESSIONID is present\", () => {\r",
+							"  pm.expect(pm.cookies.has('JSESSIONID')).to.be.false;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains string impuesto\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"impuesto\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains string dxc\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"dxc\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains string saldo\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"saldo\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Saldo restante NoOk\", () => {\r",
+							"const responseJson = pm.response.json();\r",
+							"  pm.expect(responseJson.saldo).to.greaterThan(1000000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Saldo restante para OK\", () => {\r",
+							"const responseJson = pm.response.json();\r",
+							"  pm.expect(responseJson.saldo).to.eql(93628550);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Impuesto sueldo = 1.530.871\", () => {\r",
+							"const responseJson = pm.response.json();\r",
+							"  pm.expect(responseJson.sueldo).to.eql(1530871);\r",
+							"  pm.expect(responseJson.impuesto).to.greaterThan(0);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"sueldo = 1530871; Impuesto > 0\", () => {\r",
+							"const responseJson = pm.response.json();\r",
+							"  pm.expect(responseJson.ahorro).to.eql(98000000);\r",
+							"  pm.expect(responseJson.sueldo).to.eql(1530871);\r",
+							"  pm.expect(responseJson.impuesto).to.greaterThan(0);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"sueldo = 1530871; Impuesto > 0\" , () => {\r",
+							"const responseJson = pm.response.json();\r",
+							"  pm.expect(responseJson.ahorro).to.eql(98000000);\r",
+							"  pm.expect(responseJson.sueldo).to.eql(1530871);\r",
+							"  pm.expect(responseJson.impuesto).to.greaterThan(0);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Impuesto calculado ahorro: 98000000, sueldo: 2000000, impuesto: 349716\", () => {\r",
+							"const responseJson = pm.response.json();\r",
+							"  pm.expect(responseJson.ahorro).to.eql(98000000);\r",
+							"  pm.expect(responseJson.sueldo).to.eql(1530871);\r",
+							"  pm.expect(responseJson.impuesto).to.greaterThan(0);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://104.198.16.132:8083/rest/msdxc/dxc?sueldo=1530871&ahorro=98000000",
+					"protocol": "http",
+					"host": [
+						"104",
+						"198",
+						"16",
+						"132"
+					],
+					"port": "8083",
+					"path": [
+						"rest",
+						"msdxc",
+						"dxc"
+					],
+					"query": [
+						{
+							"key": "sueldo",
+							"value": "1530871"
+						},
+						{
+							"key": "ahorro",
+							"value": "98000000"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

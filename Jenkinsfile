@@ -3,8 +3,11 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh "mvn test"
+                bat "mvn test"
             }
+          stage('Run Postman'){
+              bat "newman run Test_lab4.postman_collection.json"
+          }
         }
     }
 }
